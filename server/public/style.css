@@ -16,6 +16,19 @@ main{
 
 .screen{
     background-color: chartreuse;
+    font-family: 'digital-7';
+}
+
+#littleScreen{
+    font-size: 16px;
+}
+
+#largeScreen{
+    font-size: 40px;
+}
+
+.screenText{
+    opacity: 50%;
 }
 
 .notebook{
@@ -24,4 +37,9 @@ main{
 
 footer{
     background-color: lavender;
+}
+
+@font-face {
+    font-family: 'digital-7';
+    src: url('./fonts/digital-7/digital-7.ttf');
 }
