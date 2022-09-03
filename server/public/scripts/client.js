@@ -29,7 +29,7 @@ function onReady() {
     $('.value').on('click', valueCalc);
     $('.operators').on('click', operatorCalc);
     $('.equal').on('click', equalCalc);
-    $('#clearEntry-btn').on('click', clearEntryCalc);
+    // $('#clearEntry-btn').on('click', clearEntryCalc);
     // $('#allClear-btn').on('click', allClearCalc);
 }   //  end onReady
 
@@ -54,16 +54,13 @@ function fetchCalcHistory(){
         $('#littleScreen').empty();
         $('#largeScreen').empty();
         $('#calcList').empty();
-
         decimalUsed = false;
         operatorUsed = false;
         equalUsed = false;
         newInput = true;
-
         let lastCalc = calcHistResponse[calcHistResponse.length - 1];
         $('#littleScreen').append(lastCalc.num1, ' ', lastCalc.operator, ' ', lastCalc.num2, ' =');
-        $('#largeScreen').append(lastCalc.answer);
-
+        $('#largeScreen').append(String(lastCalc.answer));
         for (let calc of calcHistResponse) {
             $('#calcList').append(`
                 <li>${calc.num1}&nbsp${calc.operator}&nbsp${calc.num2}&nbsp=&nbsp${calc.answer}</li>
@@ -82,7 +79,6 @@ function valueCalc() {
         $('#largeScreen').empty();
         newInput = false;
     }
-
     if (equalUsed === false) {
         if($(this).attr('id') === '.') {
             $('#littleScreen').append($(this).attr('id'));
@@ -99,6 +95,11 @@ function valueCalc() {
 //-----------------------------------------------------------------------------------------------//
 
 function operatorCalc() {
+    if (newInput === true) {
+        $('#littleScreen').empty();
+        $('#largeScreen').empty();
+        newInput = false;
+    }
     if (equalUsed === false && operatorUsed === false) {
         operatorUsed = true;
         operator = $(this).attr('id');
