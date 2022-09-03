@@ -14,14 +14,24 @@ app.use(bodyParser.urlencoded( { extended: true } ));
 //  GET - /calculation
 //-----------------------------------------------------------------------------------------------//
 
+/*
+    *   accepts GET request from the client
+    *   sends calcHistory array back to client
+*/
+
 app.get('/calculation', (req, res) => {
-    console.log('in GET Server side');
     res.send(calcHistory);
 } );
 
 //-----------------------------------------------------------------------------------------------//
 //  GET - /emptyHistory
 //-----------------------------------------------------------------------------------------------//
+
+/*
+    *   accepts GET request from the client
+    *   sets calcHistory to an empty array
+    *   sends calcHistory array back to client
+*/
 
 app.get('/emptyHistory', (req, res) => {
     calcHistory = [];
@@ -31,6 +41,13 @@ app.get('/emptyHistory', (req, res) => {
 //-----------------------------------------------------------------------------------------------//
 //  POST - /calculation
 //-----------------------------------------------------------------------------------------------//
+
+/*
+    *   accepts an object from the client
+    *   sets object to newCalc variable
+    *   calls answerCalc function
+    *   sends confirmation back to client
+*/
 
 app.post('/calculation', (req, res) => {
     newCalc = req.body;
@@ -42,6 +59,13 @@ app.post('/calculation', (req, res) => {
 //-----------------------------------------------------------------------------------------------//
 //  ANSWER CALC Function
 //-----------------------------------------------------------------------------------------------//
+
+/*
+    *   modifies the newCalc object received from client
+    *   sets newCalc.num1 and newCalc.num2 to Number variables
+    *   determines operator and performs calculation
+    *   pushes updated object to calcHistory array
+*/
 
 function answerCalc() {
     newCalc.num1 = Number(newCalc.num1);
@@ -68,3 +92,5 @@ function answerCalc() {
 app.listen(PORT, () => {
     console.log('Server Active', PORT, 'http://localhost:5000/');
 } );
+
+//  The End - Server
