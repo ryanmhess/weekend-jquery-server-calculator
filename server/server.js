@@ -4,14 +4,14 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 5000;
 
-const calcHistory = require('./modules/calculations.js');
+let calcHistory = require('./modules/calculations.js');
 let newCalc;
 
 app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded( { extended: true } ));
 
 //-----------------------------------------------------------------------------------------------//
-//  GET
+//  GET - /calculation
 //-----------------------------------------------------------------------------------------------//
 
 app.get('/calculation', (req, res) => {
@@ -20,7 +20,16 @@ app.get('/calculation', (req, res) => {
 } );
 
 //-----------------------------------------------------------------------------------------------//
-//  POST
+//  GET - /emptyHistory
+//-----------------------------------------------------------------------------------------------//
+
+app.get('/emptyHistory', (req, res) => {
+    calcHistory = [];
+    res.send(calcHistory);
+} );
+
+//-----------------------------------------------------------------------------------------------//
+//  POST - /calculation
 //-----------------------------------------------------------------------------------------------//
 
 app.post('/calculation', (req, res) => {
@@ -45,9 +54,11 @@ function answerCalc() {
     }
     else if (newCalc.operator === '*'){
         newCalc.answer = newCalc.num1 * newCalc.num2;
+        newCalc.operator = '&#xd7;';
     }
     else if (newCalc.operator === '/'){
         newCalc.answer = newCalc.num1 / newCalc.num2;
+        newCalc.operator = '&#xf7;';
     }
     calcHistory.push(newCalc);
 }

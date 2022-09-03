@@ -1,7 +1,7 @@
 module.exports = [ 
     {
         num1: 3,
-        operator: '*',
+        operator: '&#xd7;',
         num2: 2,
         answer: 6
     }

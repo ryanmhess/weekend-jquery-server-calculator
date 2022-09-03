@@ -14,7 +14,8 @@ function onReady() {
     fetchCalcHistory();
     $('.operators').on('click', operatorCalc);
     $('#equal-btn').on('click', sendCalc);
-    // $('#clear-btn').on('click', clearCalc);
+    $('#clearEntry-btn').on('click', clearEntryCalc);
+    $('#allClear-btn').on('click', allClearCalc);
 }
 
 //-----------------------------------------------------------------------------------------------//
@@ -86,11 +87,29 @@ function sendCalc() {
 //  CLEAR CALC Function
 //-----------------------------------------------------------------------------------------------//
 
-// function clearCalc() {
-//     console.log('clear num1');
-//     $('#num1').val('');
-//     console.log('clear num2');
-//     $('#num2').val('');
-//     console.log('clear operator');
-//     operator = '';
-// }
+function clearEntryCalc() {
+    console.log('clear num1');
+    $('#num1').val('');
+    console.log('clear num2');
+    $('#num2').val('');
+    console.log('clear operator');
+    operator = null;
+    operatorSelection = null;
+}
+
+//-----------------------------------------------------------------------------------------------//
+//  CLEAR CALC Function - GET
+//-----------------------------------------------------------------------------------------------//
+
+function allClearCalc() {
+    $('#num1').val('');
+    $('#num2').val('');
+    operator = null;
+    operatorSelection = null;
+    $.ajax( {
+        type: 'GET',
+        url: '/emptyHistory'
+    }).then(function(emptyHistoryResponse) {
+        fetchCalcHistory();
+    })
+}
