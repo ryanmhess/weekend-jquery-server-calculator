@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded( { extended: true } ));
 */
 
 app.get('/calculation', (req, res) => {
+    console.log(calcHistory);
     res.send(calcHistory);
 } );
 
@@ -76,13 +77,13 @@ function answerCalc() {
     else if (newCalc.operator === '-'){
         newCalc.answer = newCalc.num1 - newCalc.num2;
     }
-    else if (newCalc.operator === '*'){
+    else if (newCalc.operator === '×'){
         newCalc.answer = newCalc.num1 * newCalc.num2;
-        newCalc.operator = '&#xd7;';
+        newCalc.operator = '×';
     }
-    else if (newCalc.operator === '/'){
+    else if (newCalc.operator === '÷'){
         newCalc.answer = newCalc.num1 / newCalc.num2;
-        newCalc.operator = '&#xf7;';
+        newCalc.operator = '÷';
     }
     calcHistory.push(newCalc);
 }

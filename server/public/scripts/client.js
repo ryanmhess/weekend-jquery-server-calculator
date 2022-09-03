@@ -26,12 +26,10 @@ $(document).ready(onReady);
 
 function onReady() {
     fetchCalcHistory();
-    $('.value').on('click', numberFunction);
-    $('.operators').on('click', operatorFunction);
-    $('.equal').on('click', equalFunction);
-    // $('.operators').on('click', operatorCalc);
-    // $('#equal-btn').on('click', sendCalc);
-    // $('#clearEntry-btn').on('click', clearEntryCalc);
+    $('.value').on('click', valueCalc);
+    $('.operators').on('click', operatorCalc);
+    $('.equal').on('click', equalCalc);
+    $('#clearEntry-btn').on('click', clearEntryCalc);
     // $('#allClear-btn').on('click', allClearCalc);
 }   //  end onReady
 
@@ -57,8 +55,13 @@ function fetchCalcHistory(){
         $('#largeScreen').empty();
         $('#calcList').empty();
 
+        decimalUsed = false;
+        operatorUsed = false;
+        equalUsed = false;
+        newInput = true;
+
         let lastCalc = calcHistResponse[calcHistResponse.length - 1];
-        $('#littleScreen').append(lastCalc.num1, ' ', lastCalc.operator, ' ', lastCalc.num2, '=');
+        $('#littleScreen').append(lastCalc.num1, ' ', lastCalc.operator, ' ', lastCalc.num2, ' =');
         $('#largeScreen').append(lastCalc.answer);
 
         for (let calc of calcHistResponse) {
@@ -70,15 +73,16 @@ function fetchCalcHistory(){
 }   //  end fetchCalcHistory
 
 //-----------------------------------------------------------------------------------------------//
-//  TEST AREA - NUMBER FUNCTION
+//  VALUE CALC Function
 //-----------------------------------------------------------------------------------------------//
 
-function numberFunction() {
+function valueCalc() {
     if (newInput === true) {
         $('#littleScreen').empty();
         $('#largeScreen').empty();
         newInput = false;
     }
+
     if (equalUsed === false) {
         if($(this).attr('id') === '.') {
             $('#littleScreen').append($(this).attr('id'));
@@ -91,10 +95,10 @@ function numberFunction() {
 }
 
 //-----------------------------------------------------------------------------------------------//
-//  TEST AREA - OPERATOR FUNCTION
+//  OPERATOR CALC Function
 //-----------------------------------------------------------------------------------------------//
 
-function operatorFunction() {
+function operatorCalc() {
     if (equalUsed === false && operatorUsed === false) {
         operatorUsed = true;
         operator = $(this).attr('id');
@@ -109,16 +113,16 @@ function operatorFunction() {
 }
 
 //-----------------------------------------------------------------------------------------------//
-//  TEST AREA - EQUAL FUNCTION
+//  EQUAL CALC Function
 //-----------------------------------------------------------------------------------------------//
 
-function equalFunction() {
+function equalCalc() {
     if (equalUsed === false && operatorUsed === true) {
         equalUsed = true;
         num2 = $('#largeScreen').text();
+        newInput = false;
+        sendCalc();
     }
-    newInput = false;
-    sendCalc();
 }
 
 //-----------------------------------------------------------------------------------------------//
@@ -136,7 +140,6 @@ function equalFunction() {
 */
 
 function sendCalc() {
-    answer = null;
     $.ajax( {
         method: 'POST',
         url: '/calculation',
@@ -146,139 +149,4 @@ function sendCalc() {
     } );
 }   //  end sendCalc
 
-//-----------------------------------------------------------------------------------------------//
-//  TEST AREA
-//-----------------------------------------------------------------------------------------------//
-
-// function numberFunction() {
-//     if (newInput === false) {
-//         $('#littleScreen').empty();
-//         $('#largeScreen').empty();
-//         newInput = true;
-//     }
-//     if (equalUsed === false) {
-//         if($(this).attr('id') === '.') {
-//             $('#littleScreen').append($(this).attr('id'));
-//             $('#largeScreen').append($(this).attr('id'));
-//             $(this).attr('id', '');
-//         }
-//         $('#littleScreen').append($(this).attr('id'));
-//         $('#largeScreen').append($(this).attr('id'));
-//     }
-// }
-
-// //-----------------------------------------------------------------------------------------------//
-// //  TEST AREA
-// //-----------------------------------------------------------------------------------------------//
-
-// function operatorFunction() {
-//     if (equalUsed === false && operatorUsed === false) {
-//         operatorUsed = true;
-//         operator = $(this).attr('id');
-//         num1 = $('#largeScreen').text();
-//         $('#littleScreen').append(' ', $(this).attr('id'), ' ');
-//         $('#largeScreen').empty();
-//         $('.decimal').attr('id', '.');
-//     }
-//     else if (operatorUsed === true) {
-//         alert('Operator Limit Reached');
-//     }
-// }
-
-// //-----------------------------------------------------------------------------------------------//
-// //  TEST AREA
-// //-----------------------------------------------------------------------------------------------//
-
-// function equalFunction() {
-//     if (equalUsed === false && operatorUsed === true) {
-//         equalUsed = true;
-//         num2 = $('#largeScreen').text();
-//         // $('#littleScreen').append(' ', $(this).attr('id'));
-//         // $('#littleScreen').empty();
-//         // $('#largeScreen').empty();
-//     }
-//     newInput = false;
-//     sendCalc();
-// }
-
 //  The End - Client
-
-
-//-----------------------------------------------------------------------------------------------//
-//  OPERATOR CALC Function
-//-----------------------------------------------------------------------------------------------//
-
-/*
-    *   if operatorSelection has been selected, returns alert
-    *   operatorSelection set to last operator button clicked
-    *   based on operator button clicked, sets operator variable accordingly
-*/
-
-// function operatorCalc() {
-//     if (operatorSelection){
-//         return alert('Operator Limit Reached');
-//     }
-//     operatorSelection = $(this).attr('id');
-//     if (operatorSelection === 'addition-btn') {
-//         operator = '+';
-//     }
-//     else if (operatorSelection === 'subtraction-btn') {
-//         operator = '-';
-//     }
-//     else if (operatorSelection === 'multiplication-btn') {
-//         operator = '*';
-//     }
-//     else if (operatorSelection === 'division-btn') {
-//         operator = '/';
-//     }
-// }   //  end operatorCalc
-
-//-----------------------------------------------------------------------------------------------//
-//  CLEAR CALC Function - GET
-//-----------------------------------------------------------------------------------------------//
-
-/*
-    *   clears num1 and num2 input windows
-    *   operator and operatorSelection set to null
-    *   sends GET request to Server
-    *   Server response received
-    *   calls fetchCalcHistory function
-*/
-
-// function allClearCalc() {
-//     $('#num1').val('');
-//     $('#num2').val('');
-//     operator = null;
-//     operatorSelection = null;
-//     $.ajax( {
-//         type: 'GET',
-//         url: '/emptyHistory'
-//     }).then(function(emptyHistoryResponse) {
-//         fetchCalcHistory();
-//     });
-// }   //  end allClearCalc
-
-//-----------------------------------------------------------------------------------------------//
-//  CLEAR CALC Function - GET
-//-----------------------------------------------------------------------------------------------//
-
-/*
-    *   clears num1 and num2 input windows
-    *   operator and operatorSelection set to null
-    *   sends GET request to Server
-    *   Server response received
-    *   calls fetchCalcHistory function
-*/
-
-// function allClearCalc() {
-//     $('#num1').val('');
-//     $('#num2').val('');
-//     operator = null;
-//     operatorSelection = null;
-//     $.ajax( {
-//         type: 'GET',
-//         url: '/emptyHistory'
-//     }).then(function(emptyHistoryResponse) {
-//         fetchCalcHistory();
-//     });
-// }   //  end allClearCalc
