@@ -1,3 +1,23 @@
 body{
     background-color: aquamarine;
 }
+
+header{
+    background-color: lightcoral;
+}
+
+main{
+    background-color: cornflowerblue;
+}
+
+.calculator{
+    background-color: slategray;
+}
+
+.notebook{
+    background-color: lightgoldenrodyellow;
+}
+
+footer{
+    background-color: lavender;
+}
