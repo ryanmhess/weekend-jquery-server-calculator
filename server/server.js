@@ -27,6 +27,7 @@ app.post('/calculation', (req, res) => {
     newCalc = req.body;
     console.log('req body:', newCalc);
     answerCalc();
+    res.sendStatus(201);
 } );
 
 //-----------------------------------------------------------------------------------------------//

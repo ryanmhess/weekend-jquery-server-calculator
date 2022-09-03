@@ -31,6 +31,7 @@ function fetchCalcHistory(){
     } ).then(function(calcHistResponse) {
         console.log('info GOT from Server now in Client');
         console.log(calcHistResponse);
+        $('#calcList').empty();
         for (let calc of calcHistResponse) {
             $('#calcList').append(`
                 <li>${calc.num1}&nbsp${calc.operator}&nbsp${calc.num2}&nbsp=&nbsp${calc.answer}</li>
@@ -76,6 +77,7 @@ function sendCalc() {
         url: '/calculation',
         data: {num1, operator, num2, answer}
     } ).then(function(newCalcResponse) {
+        operatorSelection = null;
         fetchCalcHistory();
     } );
 }
