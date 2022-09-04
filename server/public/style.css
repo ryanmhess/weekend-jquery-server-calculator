@@ -3,40 +3,187 @@ body{
 }
 
 header{
-    background-color: lightcoral;
+    text-align: center;
+    font-size: 100px;
+    text-decoration: underline;
+    padding-bottom: 25px;
 }
 
+footer{
+    text-align: left;
+    padding-top: 25px;
+}
+
+/*---------------------------------------------*/
+/*  GRID WORK FOR MAIN
+/*---------------------------------------------*/
+
 main{
-    background-color: cornflowerblue;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
 }
 
 .calculator{
-    background-color: slategray;
+    height: 600px;
+    width: 400px;
+    padding: 20px;
+    border-style: groove;
+    border-width: 10px;
+    border-radius: 25px;
+    border-block-color: rgb(107, 107, 107);
+    border-inline-color: rgb(107, 107, 107);
+}
+
+.notebook{
+    height: 700px;
+    width: 500px;
+}
+
+/*---------------------------------------------*/
+/*  GRID WORK FOR CALCULATOR
+/*---------------------------------------------*/
+
+#calcContainer{
+    background-color: rgb(40, 52, 65);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: (1fr, 0.5fr, 2fr, 1fr, 1fr, 1fr, 1fr, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-areas: 
+        "solarPanel solarPanel solarPanel solarPanel"
+        "littleS littleS littleS littleS"
+        "largeS largeS largeS largeS"
+        "add sub mul div"
+        "one two thr equ"
+        "fou fiv six equ"
+        "sev eig nin CE"
+        "dec zer AC CE";
+}
+
+.operators, .value, .equal, .CE, .AC{
+    font-size: 40px;
+    border-style: outset;
+    border-width: 5px;
+    border-radius: 10px;
+    border-block-color: orange;
+    border-inline-color: orange;
+}
+
+.operators{
+    margin-top: 25px;
+}
+
+.solar{
+    background-color: rgb(61, 31, 17);
+    grid-area: solarPanel;
+    height: 50px;
+    width: 75%;
+    justify-self: center;
 }
 
 .screen{
     background-color: chartreuse;
     font-family: 'digital-7';
+    opacity: 75%;
+    width: 90%;
+    justify-self: center;
 }
 
 #littleScreen{
-    font-size: 16px;
+    font-size: 32px;
+    grid-area: littleS;
+    max-height: 35px;
+    min-height: 35px;
 }
 
 #largeScreen{
-    font-size: 40px;
+    text-align: right;
+    font-size: 120px;
+    grid-area: largeS;
+    max-height: 100px;
+    min-height: 100px;
 }
 
-.screenText{
-    opacity: 50%;
+.equal{
+    grid-area: equ;
 }
+
+.addition{
+    grid-area: add;
+}
+
+.subtraction{
+    grid-area: sub;
+}
+
+.multiplication{
+    grid-area: mul;
+}
+
+.division{
+    grid-area: div;
+}
+
+.one{
+    grid-area: one;
+}
+
+.two{
+    grid-area: two;
+}
+
+.three{
+    grid-area: thr;
+}
+
+.four{
+    grid-area: fou;
+}
+
+.five{
+    grid-area: fiv;
+}
+
+.six{
+    grid-area: six;
+}
+
+.seven{
+    grid-area: sev;
+}
+
+.eight{
+    grid-area: eig;
+}
+
+.nine{
+    grid-area: nin;
+}
+
+.decimal{
+    grid-area: dec;
+}
+
+.zero{
+    grid-area: zer;
+}
+
+.CE{
+    grid-area: CE;
+}
+
+.AC{
+    grid-area: AC;
+}
+
+/*---------------------------------------------*/
+/*  GRID WORK FOR NOTEBOOK
+/*---------------------------------------------*/
 
 .notebook{
     background-color: lightgoldenrodyellow;
-}
-
-footer{
-    background-color: lavender;
 }
 
 @font-face {

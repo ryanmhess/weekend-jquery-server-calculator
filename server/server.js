@@ -34,9 +34,9 @@ app.get('/calculation', (req, res) => {
     *   sends calcHistory array back to client
 */
 
-app.get('/emptyHistory', (req, res) => {
+app.delete('/calculation', (req, res) => {
     calcHistory = [];
-    res.send(calcHistory);
+    res.sendStatus(201);
 } );
 
 //-----------------------------------------------------------------------------------------------//

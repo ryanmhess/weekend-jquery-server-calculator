@@ -13,30 +13,28 @@
 <body>
     <header>Calculator Assignment - Hess</header>
     <main>
-        <section class="calculator">
-            <div id="littleScreen" class="screen"><span class="screenText"></span></div>
-            <div id="largeScreen" class="screen"><span class="screenText"></span></div>
-            <input id="num1" class="calcInput" type="number" placeholder="num1 input">
-            <input id="num2" class="calcInput" type="number" placeholder="num2 input">
-            <button id="+" class="operators">+</button>
-            <button id="-" class="operators">-</button>
-            <button id="×" class="operators">×</button>
-            <button id="÷" class="operators">÷</button>
-            <button id="1" class="value">1</button>
-            <button id="2" class="value">2</button>
-            <button id="3" class="value">3</button>
-            <button id="4" class="value">4</button>
-            <button id="5" class="value">5</button>
-            <button id="6" class="value">6</button>
-            <button id="7" class="value">7</button>
-            <button id="8" class="value">8</button>
-            <button id="9" class="value">9</button>
+        <section id="calcContainer" class="calculator">
+            <div id="solarPanel" class="solar"></div>
+            <div id="littleScreen" class="screen"><span id="sS" class="screenText"></span></div>
+            <div id="largeScreen" class="screen"><span id="lS" class="screenText"></span></div>
+            <button id="+" class="operators addition">+</button>
+            <button id="-" class="operators subtraction">-</button>
+            <button id="×" class="operators multiplication">×</button>
+            <button id="÷" class="operators division">÷</button>
+            <button id="1" class="value one">1</button>
+            <button id="2" class="value two">2</button>
+            <button id="3" class="value three">3</button>
+            <button id="4" class="value four">4</button>
+            <button id="5" class="value five">5</button>
+            <button id="6" class="value six">6</button>
+            <button id="7" class="value seven">7</button>
+            <button id="8" class="value eight">8</button>
+            <button id="9" class="value nine">9</button>
             <button id="." class="value decimal">.</button>
-            <button id="0" class="value">0</button>
-            <button id="delete-btn">&#8592;</button>
+            <button id="0" class="value zero">0</button>
             <button id="=" class="equal">=</button>
-            <button id="clearEntry-btn">CE</button>
-            <button id="allClear-btn">AC</button>
+            <button id="clearEntry-btn" class="CE">CE</button>
+            <button id="allClear-btn" class="AC">AC</button>
         </section>
         <section class="notebook">
             <ul id="calcList">

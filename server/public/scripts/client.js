@@ -29,8 +29,8 @@ function onReady() {
     $('.value').on('click', valueCalc);
     $('.operators').on('click', operatorCalc);
     $('.equal').on('click', equalCalc);
-    // $('#clearEntry-btn').on('click', clearEntryCalc);
-    // $('#allClear-btn').on('click', allClearCalc);
+    $('#clearEntry-btn').on('click', clearEntryCalc);
+    $('#allClear-btn').on('click', allClearCalc);
 }   //  end onReady
 
 //-----------------------------------------------------------------------------------------------//
@@ -146,8 +146,44 @@ function sendCalc() {
         url: '/calculation',
         data: {num1, operator, num2, answer}
     } ).then(function(newCalcResponse) {
+        console.log(newCalcResponse);
         fetchCalcHistory();
     } );
 }   //  end sendCalc
+
+//-----------------------------------------------------------------------------------------------//
+//  CLEAR ENTRY CALC Function
+//-----------------------------------------------------------------------------------------------//
+
+function clearEntryCalc() {
+    $('#littleScreen').empty();
+    $('#largeScreen').empty();
+    decimalUsed = false;
+    operatorUsed = false;
+    equalUsed = false;
+    newInput = true;
+}
+
+//-----------------------------------------------------------------------------------------------//
+//  ALL CLEAR CALC Function
+//-----------------------------------------------------------------------------------------------//
+
+function allClearCalc() {
+    decimalUsed = false;
+    operatorUsed = false;
+    equalUsed = false;
+    newInput = true;
+    $.ajax( {
+        method: 'DELETE',
+        url: '/calculation'
+    } ).then(function(emptyResponse) {
+        console.log(emptyResponse);
+        num1 = null;
+        operator = null;
+        num2 = null;
+        answer = null;
+        fetchCalcHistory();
+    } );
+}
 
 //  The End - Client
