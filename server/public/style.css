@@ -1,12 +1,14 @@
 body{
-    background-color: aquamarine;
+    background-image: url(./images/wood.jpeg);
 }
 
 header{
     text-align: center;
     font-size: 100px;
-    text-decoration: underline;
+    font-weight: bolder;
     padding-bottom: 25px;
+    color: antiquewhite;
+    text-decoration: solid;
 }
 
 footer{
