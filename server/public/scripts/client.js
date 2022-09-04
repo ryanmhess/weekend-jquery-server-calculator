@@ -63,7 +63,7 @@ function fetchCalcHistory(){
         $('#largeScreen').append(String(lastCalc.answer));
         for (let calc of calcHistResponse) {
             $('#calcList').append(`
-                <li>${calc.num1}&nbsp${calc.operator}&nbsp${calc.num2}&nbsp=&nbsp${calc.answer}</li>
+                <p>${calc.num1}&nbsp${calc.operator}&nbsp${calc.num2}&nbsp=&nbsp${calc.answer}</p>
             `);
         }
     } );

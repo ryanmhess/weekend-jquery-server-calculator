@@ -35,11 +35,6 @@ main{
     border-inline-color: rgb(107, 107, 107);
 }
 
-.notebook{
-    height: 700px;
-    width: 500px;
-}
-
 /*---------------------------------------------*/
 /*  GRID WORK FOR CALCULATOR
 /*---------------------------------------------*/
@@ -73,6 +68,7 @@ main{
 
 .operators{
     margin-top: 25px;
+    background-color: rgb(91, 135, 211);
 }
 
 .solar{
@@ -86,9 +82,9 @@ main{
 .screen{
     background-color: chartreuse;
     font-family: 'digital-7';
+    color: rgba(0, 0, 0, 0.75);
     opacity: 75%;
     width: 90%;
-    justify-self: center;
 }
 
 #littleScreen{
@@ -96,6 +92,12 @@ main{
     grid-area: littleS;
     max-height: 35px;
     min-height: 35px;
+    text-indent: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    justify-self: center;
+    align-self: end;
+    border-style: inset;
 }
 
 #largeScreen{
@@ -104,10 +106,16 @@ main{
     grid-area: largeS;
     max-height: 100px;
     min-height: 100px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-style: inset;
+    justify-self: center;
+    align-self: initial;
 }
 
 .equal{
     grid-area: equ;
+    background-color: rgb(0, 255, 255);
 }
 
 .addition{
@@ -172,21 +180,63 @@ main{
 
 .CE{
     grid-area: CE;
+    background-color: rgba(255, 68, 0, 0.75);
 }
 
 .AC{
     grid-area: AC;
+    background-color: rgba(255, 68, 0, 0.75);
 }
 
 /*---------------------------------------------*/
 /*  GRID WORK FOR NOTEBOOK
 /*---------------------------------------------*/
 
-.notebook{
+#notebook{
     background-color: lightgoldenrodyellow;
+    font-family: 'handwriting';
+    color: rgba(255, 0, 0, 0.45);
+    width: 600px;
+    height: 700px;
+    position: relative;
+    margin: 20px auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    box-shadow: 0px 0px 5px 0px #888;
+}
+
+#notebook::before{
+    content: '';
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    background-color: rgba(255,0,0,0.6);
+}
+
+#pattern{
+    height: 100%;
+    background-image: repeating-linear-gradient(lightgoldenrodyellow 0px, lightgoldenrodyellow 24px, teal 25px);
+}
+
+#calcList{
+    padding-top: 6px;
+    padding-left: 56px;
+    padding-right: 16px;
+    line-height: 5px;
+    font-family: 'handwriting';
+    font-size: 32px;
+    letter-spacing: 1px;
+    word-spacing: 5px;
 }
 
 @font-face {
     font-family: 'digital-7';
     src: url('./fonts/digital-7/digital-7.ttf');
+}
+
+@font-face {
+    font-family: 'handwriting';
+    src: url('./fonts/PhontPhreaksHandwriting.ttf');
 }
