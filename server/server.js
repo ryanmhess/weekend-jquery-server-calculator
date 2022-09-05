@@ -82,7 +82,7 @@ function answerCalc() {
         newCalc.operator = '×';
     }
     else if (newCalc.operator === '÷'){
-        newCalc.answer = newCalc.num1 / newCalc.num2;
+        newCalc.answer = (newCalc.num1 / newCalc.num2).toFixed(2);
         newCalc.operator = '÷';
     }
     calcHistory.push(newCalc);
