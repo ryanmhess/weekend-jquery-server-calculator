@@ -9,6 +9,7 @@ let newCalc;
 
 app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded( { extended: true } ));
+app.use(bodyParser.json());
 
 //-----------------------------------------------------------------------------------------------//
 //  GET - /calculation
